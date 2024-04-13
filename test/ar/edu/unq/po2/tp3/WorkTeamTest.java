@@ -3,7 +3,7 @@ package ar.edu.unq.po2.tp3;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -28,12 +28,7 @@ class WorkTeamTest {
 		this.member4 = new Person("j", LocalDate.of(2004, 1, 1));
 		this.member5 = new Person("k", LocalDate.of(2005, 1, 1));
 		
-		this.teamMembers = new ArrayList<Person>();
-		this.teamMembers.add(member1);
-		this.teamMembers.add(member2);
-		this.teamMembers.add(member3);
-		this.teamMembers.add(member4);
-		this.teamMembers.add(member5);
+		this.teamMembers = Arrays.asList(member1, member2, member3, member4, member5);
 		
 		this.aWorkTeam = new WorkTeam("sdf", teamMembers);
 		

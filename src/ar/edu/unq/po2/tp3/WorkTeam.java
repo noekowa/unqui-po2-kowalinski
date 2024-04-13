@@ -1,7 +1,6 @@
 package ar.edu.unq.po2.tp3;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WorkTeam {
 
@@ -25,10 +24,11 @@ public class WorkTeam {
 	public List<Person> getMembers() {
 		return members;
 	}
-	public Double averageAge() {
-		return members.stream().
-				//mapToInt(member -> member.age()).average();
-				collect(Collectors.averagingDouble(member -> member.age()));
+	public double averageAge() {
+		return members.stream()
+				.mapToDouble(member -> member.age())
+				.average().getAsDouble();
+				//collect(Collectors.averagingDouble(member -> member.age()));
 	}
 
 }
