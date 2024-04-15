@@ -13,14 +13,12 @@ public class Producto {
 		this.setEsPrecioCuidado(esPrecioCuidado);
 	}
 	
-	
 	public Producto(String nombre, Double precio) {
 		super();
 		this.setNombre(nombre);
 		this.setPrecio(precio);
 		this.setEsPrecioCuidado(false);
 	}
-
 
 	public String getNombre() {
 		return nombre;

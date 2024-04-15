@@ -22,13 +22,13 @@ public class Supermercado {
 	private void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
-	private List<Producto> getCatalogo() {
-		return catalogo;
-	}
 	private void setCatalogo(List<Producto> catalogo) {
 		this.catalogo = catalogo;
 	}
+	private List<Producto> getCatalogo() {
+		return catalogo;
+	}
+
 	public void agregarProducto(Producto prod) {
 		this.getCatalogo().add(prod);
 		
