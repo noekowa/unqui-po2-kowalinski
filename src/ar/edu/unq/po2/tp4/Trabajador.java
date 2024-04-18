@@ -7,12 +7,10 @@ public class Trabajador {
 	
 	private List<Ingreso> ingresosPercibidos;
 
-	
 	public Trabajador() {
 		super();
 		this.setIngresosPercibidos(new ArrayList<Ingreso>());
 	}
-
 	private List<Ingreso> getIngresosPercibidos() {
 		return ingresosPercibidos;
 	}
@@ -38,5 +36,4 @@ public class Trabajador {
 				.mapToDouble(ing -> ing.getMonto())
 				.sum();
 	}
-	
 }

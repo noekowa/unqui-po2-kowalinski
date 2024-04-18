@@ -8,8 +8,6 @@ public class Ingreso {
 	private String concepto;
 	private Double monto;
 
-	
-	
 	public Ingreso(Month mes, String concepto, Double monto) {
 		super();
 		this.setMes(mes);
