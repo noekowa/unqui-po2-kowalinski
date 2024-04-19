@@ -5,38 +5,25 @@ import java.util.List;
 
 public class Caja {
 	
-	private List<Producto> productos;
-	private Double montoAPagar;
+	private List<Chargeable> chargeables;
 	
 	public Caja() {
 		super();
-		this.setProductos(new ArrayList<Producto>());
-		this.setMontoAPagar(0.0);
+		this.setChargeables(new ArrayList<Chargeable>());
 	}
-	private void setProductos(List<Producto> productos) {
-		this.productos = productos;
+	private void setChargeables(List<Chargeable> chargeables) {
+		this.chargeables = chargeables;
 	}
-	private void setMontoAPagar(Double montoAPagar) {
-		this.montoAPagar = montoAPagar;
-	}
-	private List<Producto> getProductos() {
-		return productos;
+	private List<Chargeable> getChargeables() {
+		return chargeables;
 	}
 	public Double getMontoAPagar() {
-		return montoAPagar;
+		return this.getChargeables().stream()
+			.mapToDouble(chargeable -> chargeable.getMontoAPagar())
+			.sum();
 	}
-	public void registrarProducto(Producto prod) {
-		this.addProducto(prod);
-		this.incrementarMontoAPagar(prod.getPrecio());
-		this.decrementarStock(prod);
-	}
-	private void addProducto(Producto prod) {
-		this.getProductos().add(prod);
-	}
-	private void incrementarMontoAPagar(Double precio) {
-		this.setMontoAPagar(this.getMontoAPagar() + precio);
-	}
-	private void decrementarStock(Producto prod) {
-		prod.decrementarStock();
+	public void registrarChargeable(Chargeable chargeable) {
+		this.getChargeables().add(chargeable);
+		chargeable.completarRegistroDeCaja();
 	}
 }

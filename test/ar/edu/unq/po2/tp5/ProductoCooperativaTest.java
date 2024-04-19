@@ -15,7 +15,7 @@ class ProductoCooperativaTest {
 	}
 	@Test
 	public void testGetPrecio() {
-		assertEquals(unProdCoop.getPrecio(), 90.0);
+		assertEquals(unProdCoop.getMontoAPagar(), 90.0);
 	}
 	@Test
 	public void testGetCantidadEnStock() {

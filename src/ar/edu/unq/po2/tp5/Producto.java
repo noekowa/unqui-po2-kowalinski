@@ -1,6 +1,6 @@
 package ar.edu.unq.po2.tp5;
 
-public class Producto {
+public class Producto implements Chargeable {
 	
 	private Double precio;
 	private Integer cantidadEnStock;
@@ -17,13 +17,19 @@ public class Producto {
 	private void setCantidadEnStock(Integer cantidadEnStock) {
 		this.cantidadEnStock = cantidadEnStock;
 	}
-	public Double getPrecio() {
+	protected Double getPrecio() {
 		return precio;
 	}
 	public Integer getCantidadEnStock() {
 		return cantidadEnStock;
 	}
-	public void decrementarStock() {
+
+	@Override
+	public Double getMontoAPagar() {
+		return this.getPrecio();
+	}
+	@Override
+	public void completarRegistroDeCaja() {
 		this.setCantidadEnStock(this.getCantidadEnStock()-1);
 	}
 	

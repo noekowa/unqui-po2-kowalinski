@@ -15,7 +15,7 @@ class ProductoTest {
 	}
 	@Test
 	public void testGetPrecio() {
-		assertEquals(unProducto.getPrecio(), 100.0);
+		assertEquals(unProducto.getMontoAPagar(), 100.0);
 	}
 	@Test
 	public void testGetCantidadEnStock() {
