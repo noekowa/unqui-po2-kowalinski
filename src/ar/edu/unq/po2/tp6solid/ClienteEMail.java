@@ -4,23 +4,21 @@ import java.util.ArrayList;
 
 public class ClienteEMail {
 	
-	private IServidor servidor;
 	private Conector conector;
-	private Administrador administrador;
+	private ContadorEMails contador;
 	private String nombreUsuario;
 	private String passusuario;
 	private ArrayList<Correo> inbox;
 	private ArrayList<Correo> borrados;
 	
-	public ClienteEMail(IServidor servidor, Conector conector, Administrador adm, String nombreUsuario, String pass){
-		this.setServidor(servidor);
+	public ClienteEMail(Conector conector, ContadorEMails contador, String nombreUsuario, String pass){
 		this.setConector(conector);
-		this.setAdministrador(adm);
+		this.setContador(contador);
 		this.setNombreUsuario(nombreUsuario);
 		this.setPassusuario(pass);
 		this.inbox = new ArrayList<Correo>();
 		this.borrados = new ArrayList<Correo>();
-		this.getConector().conectar(getServidor(), getNombreUsuario(), getPassusuario());
+		this.getConector().conectar(getNombreUsuario(), getPassusuario());
 	}
 	private Conector getConector() {
 		return conector;
@@ -28,15 +26,10 @@ public class ClienteEMail {
 	private void setConector(Conector conector) {
 		this.conector = conector;
 	}
-	private void setAdministrador(Administrador adm) {
-		this.administrador = adm;
+	private void setContador(ContadorEMails contador) {
+		this.contador = contador;
 	}
-	private IServidor getServidor() {
-		return servidor;
-	}
-	private void setServidor(IServidor servidor) {
-		this.servidor = servidor;
-	}
+	
 	private String getNombreUsuario() {
 		return nombreUsuario;
 	}
@@ -56,11 +49,17 @@ public class ClienteEMail {
 		return borrados;
 	}
 	public void recibirNuevos(){
-		this.getServidor().recibirNuevos(getNombreUsuario(), getPassusuario());
+		this.getConector().recibirNuevos(getNombreUsuario(), getPassusuario());
 	}
-	
 	public void enviarCorreo(Correo correo){
-		this.getServidor().enviar(correo);
+		this.getConector().enviar(correo);
 	}
 
+	public void borrarCorreo(Correo correo){
+		this.getInbox().remove(correo);
+		this.getBorrados().add(correo);
+	}
+	public void eliminarBorrado(Correo correo){
+		this.getBorrados().remove(correo);
+	}
 }

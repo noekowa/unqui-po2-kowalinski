@@ -11,25 +11,14 @@ public class Correo {
 		this.setDestinatario(destinatario);
 		this.setCuerpo(cuerpo);
 	}
-	public Correo() {
-		super();
-	}
-	public void setAsunto(String asunto) {
+	
+	private void setAsunto(String asunto) {
 		this.asunto = asunto;
 	}
-	public void setDestinatario(String destinatario) {
+	private void setDestinatario(String destinatario) {
 		this.destinatario = destinatario;
 	}
-	public void setCuerpo(String cuerpo) {
+	private void setCuerpo(String cuerpo) {
 		this.cuerpo = cuerpo;
-	}
-	public String getAsunto() {
-		return asunto;
-	}
-	public String getDestinatario() {
-		return destinatario;
-	}
-	public String getCuerpo() {
-		return cuerpo;
 	}
 }

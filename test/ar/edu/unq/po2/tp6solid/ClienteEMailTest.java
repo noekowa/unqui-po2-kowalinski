@@ -9,36 +9,35 @@ import org.junit.jupiter.api.Test;
 class ClienteEMailTest {
 
 	private ClienteEMail cliente;
-	private String nombreUsuario = "sdf";
-	private String pass = "jkl";
+	private String nombreUsuario;
+	private String pass;
 	private IServidor servidor;
 	private Conector conector;
-	private Administrador adm;
+	private ContadorEMails contador;
 	private Correo correo;
 	
 	@BeforeEach
 	public void setUp() {
 		this.nombreUsuario = "sdf";
 		this.pass = "jkl";
-		this.servidor = mock(ServidorPop.class);
 		this.conector = mock(Conector.class);
-		this.adm = mock(Administrador.class);
-		this.cliente = new ClienteEMail(servidor, conector, adm, nombreUsuario, pass);
+		this.contador = mock(ContadorEMails.class);
+		this.cliente = new ClienteEMail(conector, contador, nombreUsuario, pass);
 		this.correo = mock(Correo.class);
 	}
 	@Test
 	public void testRecibirNuevos() {
 		cliente.recibirNuevos();
-		verify(servidor).recibirNuevos(nombreUsuario, pass);
+		verify(conector).recibirNuevos(nombreUsuario, pass);
 	}
 	@Test
 	public void testEnviarCorreo() {
 		cliente.enviarCorreo(correo);
-		verify(servidor).enviar(correo);
+		verify(conector).enviar(correo);
 	}
 	@Test
 	public void testConectar() {
-		verify(conector).conectar(servidor, nombreUsuario, pass);
+		verify(conector).conectar(nombreUsuario, pass);
 	}
 	@Test
 	public void testGetInbox() {
@@ -47,5 +46,20 @@ class ClienteEMailTest {
 	@Test
 	public void testGetBorrados() {
 		assertEquals(cliente.getBorrados().size(), 0);
+	}
+	@Test
+	public void testBorrarCorreo() {
+		cliente.getInbox().add(correo);
+		assertTrue(cliente.getInbox().contains(correo), "error correo no agregado.");
+		cliente.borrarCorreo(correo);
+		assertFalse(cliente.getInbox().contains(correo), "error correo no borrado.");
+		assertTrue(cliente.getBorrados().contains(correo), "error correo no agregado en borrados.");
+	}
+	@Test
+	public void testEliminarBorrado() {
+		cliente.getBorrados().add(correo);
+		assertTrue(cliente.getBorrados().contains(correo), "error correo no agregado.");
+		cliente.eliminarBorrado(correo);
+		assertFalse(cliente.getBorrados().contains(correo), "error correo no eliminado.");
 	}
 }
