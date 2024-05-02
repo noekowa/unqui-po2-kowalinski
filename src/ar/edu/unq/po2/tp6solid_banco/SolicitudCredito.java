@@ -31,10 +31,10 @@ public abstract class SolicitudCredito {
 	protected Cliente getCliente() {
 		return cliente;
 	}
-	private Double getMonto() {
+	protected Double getMonto() {
 		return monto;
 	}
-	private Integer getPlazoEnMeses() {
+	protected Integer getPlazoEnMeses() {
 		return plazoEnMeses;
 	}
 	
@@ -42,7 +42,7 @@ public abstract class SolicitudCredito {
 	public Double getMontoCuotaMensual() {
 		return getMonto()/getPlazoEnMeses();
 	}
-	public Boolean EsAceptable() {
+	public Boolean esAceptable() {
 		return cumpleIngresosMensuales() && cumpleCondicionesEspecificas();
 	}
 	protected abstract boolean cumpleIngresosMensuales();

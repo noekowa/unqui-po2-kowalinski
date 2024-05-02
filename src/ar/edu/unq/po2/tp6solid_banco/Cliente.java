@@ -34,6 +34,9 @@ public class Cliente {
 		return sueldoNetoMensual;
 	}
 	
+	Integer getEdad() {
+		return edad;
+	}
 	public Double getSueldoNetoAnual() {
 		return this.getSueldoNetoMensual() * 12;
 	}
