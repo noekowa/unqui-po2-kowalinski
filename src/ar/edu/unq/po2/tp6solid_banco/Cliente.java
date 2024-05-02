@@ -30,7 +30,7 @@ public class Cliente {
 	private void setSueldoNetoMensual(Double sueldoNetoMensual) {
 		this.sueldoNetoMensual = sueldoNetoMensual;
 	}
-	private Double getSueldoNetoMensual() {
+	Double getSueldoNetoMensual() {
 		return sueldoNetoMensual;
 	}
 	
