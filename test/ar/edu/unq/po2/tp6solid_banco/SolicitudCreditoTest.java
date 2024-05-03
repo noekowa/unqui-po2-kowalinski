@@ -44,12 +44,5 @@ class SolicitudCreditoTest {
 		when(unCliente.getSueldoNetoMensual()).thenReturn(14999.99/12);
 		when(unCliente.getSueldoNetoAnual()).thenReturn(14999.99);
 		assertFalse(solicitudCredPersonal.esAceptable());
-		/**
-		 * esAceptable si cumpleIngresosMensuales() && cumpleCondicionesEspecificas().
-		 * Para poder testear esAcerpable(), esos dos m'etodos tienen que est'ar implementados
-		 * en la subclase solicitudCreditoPersonal.
-		 */
-		
 	}
-
 }
