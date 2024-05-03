@@ -1,7 +1,5 @@
 package ar.edu.unq.po2.tp6solid_banco;
 
-import java.util.function.BooleanSupplier;
-
 public abstract class SolicitudCredito {
 	
 	private Cliente cliente;
@@ -42,12 +40,6 @@ public abstract class SolicitudCredito {
 	public Double getMontoCuotaMensual() {
 		return getMonto()/getPlazoEnMeses();
 	}
-	public Boolean esAceptable() {
-		return cumpleIngresosMensuales() && cumpleCondicionesEspecificas();
-	}
-	protected abstract boolean cumpleIngresosMensuales();
-	protected abstract boolean cumpleCondicionesEspecificas();
-
-	
+	public abstract boolean esAceptable();
 
 }

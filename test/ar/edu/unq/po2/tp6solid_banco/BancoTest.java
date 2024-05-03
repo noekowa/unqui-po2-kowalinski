@@ -10,15 +10,15 @@ class BancoTest {
 
 	private Banco banco;
 	private Cliente unCliente;
-	private AdministradorSolicitudes unAdmSolicitudes;
-	private SolicitudCredito unaSolicitud;
+	private SolicitudCredito unaSolicitudAceptable;
+	private SolicitudCredito unaSolicitudNoAceptable;
 	
 	@BeforeEach
 	public void setUp() {
-		this.unAdmSolicitudes = mock(AdministradorSolicitudes.class);
-		this.banco = new Banco(unAdmSolicitudes);
+		this.banco = new Banco();
 		this.unCliente = mock(Cliente.class);
-		this.unaSolicitud = mock(SolicitudCredito.class);
+		this.unaSolicitudAceptable = mock(SolicitudCredito.class);
+		this.unaSolicitudNoAceptable = mock(SolicitudCredito.class);
 	}
 	
 	@Test
@@ -33,7 +33,21 @@ class BancoTest {
 	}
 	@Test
 	public void testRegistrarSolicitud() {
-		banco.registrarSolicitud(unaSolicitud);
-		verify(unAdmSolicitudes).registrarSolicitud(unaSolicitud);
+		assertTrue(banco.registrarSolicitud(unaSolicitudAceptable));
+		assertTrue(banco.registrarSolicitud(unaSolicitudNoAceptable));
+
+	}
+	@Test
+	public void testMontoTotalSolicitudesAceptables() {
+		banco.registrarSolicitud(unaSolicitudAceptable);
+		when(unaSolicitudAceptable.esAceptable()).thenReturn(true);
+		when(unaSolicitudAceptable.getMonto()).thenReturn(1000.0);
+		
+		assertEquals(banco.montoTotalSolicitudesAceptables(), 1000.0);
+		
+		banco.registrarSolicitud(unaSolicitudNoAceptable);
+		when(unaSolicitudNoAceptable.esAceptable()).thenReturn(false);
+		
+		assertEquals(banco.montoTotalSolicitudesAceptables(), 1000,0);
 	}
 }

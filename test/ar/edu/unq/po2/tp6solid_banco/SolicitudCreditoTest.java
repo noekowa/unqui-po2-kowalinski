@@ -9,9 +9,7 @@ import org.junit.jupiter.api.Test;
 class SolicitudCreditoTest {
 
 	private SolicitudCredito solicitudCredPersonal;
-	private SolicitudCredito solicitudCredPersonalNoAceptable;
 	private SolicitudCredito solicitudCredHipotecario;
-	private SolicitudCredito solicitudCredHipotecarioNoAceptable;
 	private Cliente unCliente;
 	private Propiedad unaPropiedad;
 	
@@ -20,7 +18,6 @@ class SolicitudCreditoTest {
 		this.unCliente = mock(Cliente.class);
 		this.unaPropiedad = mock(Propiedad.class);
 		this.solicitudCredPersonal = new SolicitudCreditoPersonal(unCliente, 15000*0.7, 12);
-		this.solicitudCredPersonalNoAceptable = new SolicitudCreditoPersonal(unCliente, 5000.0, 5);
 		this.solicitudCredHipotecario = new SolicitudCreditoHipotecario(unCliente, 1000.0, 10, unaPropiedad);
 	}
 	@Test
